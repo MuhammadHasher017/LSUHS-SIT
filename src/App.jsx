@@ -1,12 +1,13 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
-import MainLayout from './components/layout/MainLayout';
+
 import RenderRoutes from './components/utility/renderRoutes';
 import routes from './routes/routes.jsx';
 import theme from './themes/theme.json';
 import '../styles/fonts.css';
 import './App.css';
+import MainLayout from './layout/MainLayout';
 
 function App() {
   // Mock user object - in a real app, this would come from authentication

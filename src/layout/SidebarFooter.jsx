@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, Avatar, Dropdown, Space } from 'antd';
 import { BellOutlined, UserOutlined, DownOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
-import '../../../src/App.css';
+import '../App.css';
 
 // Notification component
 const Notification = ({ collapsed }) => {

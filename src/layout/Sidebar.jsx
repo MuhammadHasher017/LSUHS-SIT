@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { Layout, Menu, Image, Typography } from 'antd';
-import createMenuItems from '../../data/menuItems.jsx';
+import createMenuItems from '../data/menuItems.jsx';
 import SidebarFooter from './SidebarFooter';
-import logo from '../../assets/images/logo.svg';
-import logo2 from '../../assets/images/logo_2.png';
-import '../../../src/App.css';
+import logo from '../assets/images/logo.svg';
+import logo2 from '../assets/images/logo_2.png';
+import '../App.css';
 
 const { Sider } = Layout;
 const { Title } = Typography;
@@ -23,7 +23,6 @@ const Sidebar = ({ collapsed, selectedKeys, onMenuSelect, theme }) => {
     bottom: 0,
     borderRight: '1px solid #f0f0f0',
     zIndex: 100,
-    height: '100vh'
   };
   
   // Create menu items with active icons based on selectedKeys

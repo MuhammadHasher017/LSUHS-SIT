@@ -1,204 +1,34 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { Table, Space, Typography, Button, Tag, Dropdown, Card } from 'antd';
 import { MoreOutlined } from '@ant-design/icons';
-import DynamicDrawer from '../drawers/DynamicDrawer';
 import DynamicModal from '../modals/DynamicModal';
 import ArticleDetailContent from '../content/ArticleDetailContent';
 import ArticleFormContent from '../content/ArticleFormContent';
 import DeleteConfirmContent from '../content/DeleteConfirmContent';
+import DynamicDrawer from '../drawers/DynamicDrawer';
+import { getTableColumns } from './tableUtils';
 
 const { Title } = Typography;
 
-// Function to open dynamic drawer
-export const openDynamicDrawer = (record: any, type: string) => {
-  const event = new CustomEvent('openDynamicDrawer', { 
-    detail: { record, type } 
-  });
-  window.dispatchEvent(event);
-};
-
-// Function to open dynamic modal
-export const openDynamicModal = (record: any, type: string) => {
-  const event = new CustomEvent('openDynamicModal', { 
-    detail: { record, type } 
-  });
-  window.dispatchEvent(event);
-};
-
-// Action menu items for table rows
-export const getActionItems = (record: any) => {
-  return [
-    {
-      key: 'view',
-      label: 'View Details',
-      onClick: () => openDynamicDrawer(record, 'view'),
-    },
-    {
-      key: 'edit',
-      label: 'Edit',
-      onClick: () => openDynamicModal(record, 'edit'),
-    },
-    {
-      key: 'delete',
-      label: 'Delete',
-      danger: true,
-      onClick: () => openDynamicModal(record, 'delete'),
-    },
-  ];
-};
-
-// Function to get dynamic table columns based on data type
-export const getTableColumns = (dataType: string) => {
-  // Common columns for all tables
-  const commonColumns = [
-    {
-      title: '',
-      key: 'actions',
-      width: 60,
-      align: 'center',
-      fixed: 'right',
-      render: (_: any, record: any) => (
-        <Dropdown menu={{ items: getActionItems(record) }} trigger={['click']}>
-          <Button type="text" icon={<MoreOutlined />} />
-        </Dropdown>
-      ),
-    },
-  ];
-
-  // Specific columns based on data type
-  switch (dataType) {
-    case 'goals':
-      return [
-        { title: 'ID', dataIndex: 'id', key: 'id', width: 100, fixed: 'left' },
-        { title: 'Name', dataIndex: 'name', key: 'name', width: 150 },
-        { title: 'Address', dataIndex: 'address', key: 'address', width: 250 },
-        { title: 'Goal', dataIndex: 'goal', key: 'goal', ellipsis: true, width: 300 },
-        { title: 'Category', dataIndex: 'category', key: 'category', width: 120 },
-        { title: 'Log Date', dataIndex: 'logDate', key: 'logDate', width: 180 },
-        ...commonColumns
-      ];
-    case 'library':
-      return [
-        { title: 'Title', dataIndex: 'title', key: 'title', width: 250 },
-        { title: 'Category', dataIndex: 'category', key: 'category', width: 150 },
-        { 
-          title: 'Tags', 
-          dataIndex: 'tags', 
-          key: 'tags',
-          width: 250,
-          render: (tags: string) => {
-            if (!tags) return null;
-            return (
-              <>
-                {tags.split(', ').map(tag => (
-                  <Tag key={tag} color="blue" style={{ marginBottom: '4px' }}>
-                    {tag}
-                  </Tag>
-                ))}
-              </>
-            );
-          }
-        },
-        { title: 'Author', dataIndex: 'author', key: 'author', width: 150 },
-        { 
-          title: 'Status', 
-          dataIndex: 'status', 
-          key: 'status',
-          width: 120,
-          render: (status: string) => {
-            let color = 'green';
-            if (status === 'Draft') {
-              color = 'gray';
-            } else if (status === 'Scheduled') {
-              color = 'orange';
-            }
-            return (
-              <Tag color={color} key={status}>
-                {status}
-              </Tag>
-            );
-          }
-        },
-        { title: 'Date Published', dataIndex: 'datePublished', key: 'datePublished', width: 150 },
-        ...commonColumns
-      ];
-    case 'media':
-      return [
-        { 
-          title: 'Name', 
-          dataIndex: 'name', 
-          key: 'name',
-          width: 300,
-          render: (text: string, record: any) => (
-            <Space>
-              {record.icon === 'pdf' ? 
-                <span style={{ color: '#1890ff', fontSize: '16px' }}>📄</span> : 
-                <span style={{ color: '#ff4d4f', fontSize: '16px' }}>🎬</span>}
-              {text}
-            </Space>
-          )
-        },
-        { title: 'File size', dataIndex: 'fileSize', key: 'fileSize', width: 100 },
-        { 
-          title: 'Tags', 
-          dataIndex: 'tags', 
-          key: 'tags',
-          width: 250,
-          render: (tags: string) => {
-            if (!tags) return null;
-            return (
-              <>
-                {tags.split(', ').map(tag => (
-                  <Tag key={tag} color="blue" style={{ marginBottom: '4px' }}>
-                    {tag}
-                  </Tag>
-                ))}
-              </>
-            );
-          }
-        },
-        { title: 'Date Added', dataIndex: 'dateAdded', key: 'dateAdded', width: 150 },
-        ...commonColumns
-      ];
-    default:
-      return [
-        { title: 'ID', dataIndex: 'id', key: 'id', width: 100 },
-        { title: 'Name', dataIndex: 'name', key: 'name', width: 200 },
-        ...commonColumns
-      ];
-  }
-};
-
-interface DynamicTableProps {
-  dataType: string;
-  data: any[];
-  pagination?: any;
-  searchText?: string;
-  onSearch?: (text: string) => void;
-  onRowClick?: (record: any) => void;
-  mediaType?: string;
-}
-
-const DynamicTable: React.FC<DynamicTableProps> = ({ 
+const DynamicTable = ({ 
   dataType,
   data = [], 
   pagination: paginationProps = {},
   searchText = '',
-  onSearch,
   onRowClick,
   mediaType = 'all'
 }) => {
   // State for UI
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [pageSize, setPageSize] = useState(10);
-  const [sortInfo, setSortInfo] = useState<{ field: string | null, order: string | null }>({ field: null, order: null });
+  const [sortInfo, setSortInfo] = useState({ field: null, order: null });
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedRecord, setSelectedRecord] = useState<any>(null);
+  const [selectedRecord, setSelectedRecord] = useState(null);
   const [actionType, setActionType] = useState('');
   
   // Ref for search input to avoid re-creating debounce function
-  const searchInputRef = useRef<any>(null);
+  const searchInputRef = useRef(null);
   
   // Get search fields based on data type
   const getSearchFields = () => {
@@ -285,35 +115,6 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
     
     return result;
   }, [data, mediaType, searchText, sortInfo, filterByType, filterData, sortData]);
-  
-  // Handle search input change with debounce
-  const handleSearch = useCallback((e) => {
-    const value = e.target.value;
-    setLoading(true);
-    
-    // Clear previous timeout
-    if (searchInputRef.current) {
-      clearTimeout(searchInputRef.current);
-    }
-    
-    // Set new timeout for debounce
-    searchInputRef.current = setTimeout(() => {
-      if (onSearch) {
-        onSearch(value);
-      }
-      setLoading(false);
-    }, 300);
-  }, [onSearch]);
-  
-  // Handle reset search
-  const handleResetSearch = useCallback(() => {
-    if (onSearch) {
-      onSearch('');
-    }
-    if (searchInputRef.current) {
-      clearTimeout(searchInputRef.current);
-    }
-  }, [onSearch]);
   
   // Handle drawer events
   const handleOpenDrawer = useCallback((record, type) => {

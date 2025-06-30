@@ -1,52 +1,31 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import DynamicTable from '../components/tables/DynamicTable';
-import Dashboard from '../components/dashboard/Dashboard';
+
+const Dashboard = React.lazy(() => import('../pages/Dashboard/Dashboard.page.jsx'));
+const Events = React.lazy(() => import('../pages/Events/Events.page.jsx'));
+const Unauthorized = React.lazy(() => import('../pages/Unauthorized/Unauthorized.page.jsx'));
+const Settings = React.lazy(() => import('../pages/Settings/Settings.page.jsx'));
+const Community = React.lazy(() => import('../pages/Community/Community.page.jsx'));
+const Surveys = React.lazy(() => import('../pages/Surveys/Surveys.page.jsx'));
+const Goals = React.lazy(() => import('../pages/Goals/Goals.page.jsx'));
+const Location = React.lazy(() => import('../pages/Location/Location.page.jsx'));
+const Inventory = React.lazy(() => import('../pages/Inventory/Inventory.page.jsx'));
+const Results = React.lazy(() => import('../pages/Results/Results.page.jsx'));
+const Orders = React.lazy(() => import('../pages/Orders/Orders.page.jsx'));
+const Patients = React.lazy(() => import('../pages/Patients/Patients.page.jsx'));
 import useTableData from '../hooks/useTableData';
+import { DynamicTableWithData } from '../components/tables/DynamicTableWithData';
 // Remove imports for individual table components as we're using DynamicTable
 
+const withSuspense = (Component) => (props) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Component {...props} />
+  </Suspense>
+);
+
 // Component to wrap DynamicTable with data from useTableData hook
-const DynamicTableWithData = ({ dataType, mediaType = 'all', searchText = '' }) => {
-  const { data, loading, handleSearch } = useTableData(dataType, mediaType);
-  
-  // Apply search when searchText changes
-  React.useEffect(() => {
-    if (handleSearch) {
-      handleSearch(searchText);
-    }
-  }, [searchText, handleSearch]);
-  
-  return (
-    <DynamicTable 
-      dataType={dataType} 
-      data={data} 
-      loading={loading}
-      onSearch={handleSearch}
-      mediaType={mediaType}
-    />
-  );
-};
 
-// Import placeholder components for other routes
-// In a real app, you would import actual components
-const WeightLog = () => <div>Weight Log Content</div>;
-const ActivityLog = () => <div>Activity Log Content</div>;
-const KicksLog = () => <div>Kicks Log Content</div>;
-const ContractionsLog = () => <div>Contractions Log Content</div>;
-const Goals = () => <div>Goals Content</div>;
 const Recipes = () => <div>Recipes Content</div>;
-const AppUsers = () => <div>App Users Content</div>;
-const Patients = () => <div>Patients Content</div>;
-const Orders = () => <div>Orders Content</div>;
-const Results = () => <div>Results Content</div>;
-const Inventory = () => <div>Inventory Content</div>;
-const Location = () => <div>Location Content</div>;
-const Events = () => <div>Events Content</div>;
-
-const Surveys = () => <div>Surveys Content</div>;
-const Community = () => <div>Community Content</div>;
-const Settings = () => <div>Settings Content</div>;
-const Unauthorized = () => <div>You don't have permission to access this page</div>;
-
 
 const routes = [
   {
@@ -55,45 +34,45 @@ const routes = [
   },
   {
     path: '/dashboard',
-    element: <Dashboard />,
+    element: React.createElement(withSuspense(Dashboard)),
     // Open to all users
   },
   {
     path: '/patients',
-    element: <Patients />,
+    element: React.createElement(withSuspense(Patients)),
     // Example of role-based access control
     roles: ['admin', 'manager'],
-    fallback: <Unauthorized />
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/orders',
-    element: <Orders />,
+    element: React.createElement(withSuspense(Orders)),
     roles: ['admin', 'manager'],
-    fallback: <Unauthorized />
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/results',
-    element: <Results />,
+    element: React.createElement(withSuspense(Results)),
     roles: ['admin', 'manager'],
-    fallback: <Unauthorized />
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/inventory',
-    element: <Inventory />,
+    element: React.createElement(withSuspense(Inventory)),
     roles: ['admin', 'manager'],
-    fallback: <Unauthorized />
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/location',
-    element: <Location />,
+    element: React.createElement(withSuspense(Location)),
     roles: ['admin', 'manager'],
-    fallback: <Unauthorized />
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/events',
-    element: <Events />,
+    element: React.createElement(withSuspense(Events)),
     roles: ['admin', 'manager'],
-    fallback: <Unauthorized />
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/media',
@@ -122,36 +101,30 @@ const routes = [
     ]
   },
   {
-    path: '/library',
-    element: <DynamicTableWithData dataType="library" />
+    path: '/settings',
+    element: React.createElement(withSuspense(Settings)),
+    // Example of permission-based access control
+    permissions: ['manage:settings'],
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
-  {
-    path: '/goals',
-    element: <Goals />
-  },
-  {
-    path: '/recipes',
-    element: <Recipes />
-  },
-
   {
     path: '/surveys',
-    element: <Surveys />
+    element: React.createElement(withSuspense(Surveys)),
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/community',
-    element: <Community />
+    element: React.createElement(withSuspense(Community)),
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
-    path: '/settings',
-    element: <Settings />,
-    // Example of permission-based access control
-    permissions: ['manage:settings'],
-    fallback: <Unauthorized />
+    path: '/goals',
+    element: React.createElement(withSuspense(Goals)),
+    fallback: React.createElement(withSuspense(Unauthorized))
   },
   {
     path: '/unauthorized',
-    element: <Unauthorized />
+    element: React.createElement(withSuspense(Unauthorized))
   },
   {
     // Catch-all route for 404

@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 import MediaSidebar from './MediaSidebar';
 import Header from './Header';
 import ContentWrapper from './ContentWrapper';
-import useMenu from '../../hooks/useMenu.jsx';
+import useMenu from '../hooks/useMenu.jsx';
 
 const MainLayout = ({ children, theme }) => {
   const navigate = useNavigate();
