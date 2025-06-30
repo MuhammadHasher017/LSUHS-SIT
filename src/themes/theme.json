@@ -133,12 +133,13 @@
       "itemBg": "rgb(255,255,255)",
       "lineType": "none",
       "fontSize": 15,
-      "itemSelectedBg": "rgb(232,243,253)",
+      "itemSelectedBg": "#F1EAFA",
       "padding": 12,
       "itemHeight": 48,
       "itemMarginBlock": 0,
       "itemMarginInline": 0,
-      "itemPaddingInline": 12
+      "itemPaddingInline": 12,
+      "itemSelectedColor": "#041C2F"
     },
     "DatePicker": {
       "borderRadius": 30,
