@@ -453,9 +453,7 @@ export const SettingsIcon = ({
   stroke = "#616161",
   ...props
 }) => {
-  
-  console.log("active",active);
-  
+    
   if (active) {
     return (
       <svg

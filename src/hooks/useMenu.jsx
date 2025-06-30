@@ -75,9 +75,7 @@ const useMenu = () => {
   }, [location.pathname]);
 
   const handleMenuSelect = useCallback(({ key }) => {
-    console.log("key", key);
-    
-    
+        
     setSelectedKeys([key]);
     
     // Get title from the map
