@@ -1,62 +1,39 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-// Map routes to menu keys
-const routeToKeyMap = {
-  '/dashboard': 'dashboard',
-  '/patients': 'patients',
-  '/orders': 'orders',
-  '/results': 'results',
-  '/inventory': 'inventory',
-  '/location': 'location',
-  '/events': 'events',
-  '/logs/goals': 'goals-log',
-  '/logs/weight': 'weight',
-  '/logs/activity': 'activity',
-  '/logs/kicks': 'kicks',
-  '/logs/contractions': 'contractions',
-  '/media': 'media',
-  '/media/images': 'media-images',
-  '/media/videos': 'media-videos',
-  '/media/audio': 'media-audio',
-  '/media/documents': 'media-documents',
-  '/library': 'library',
-  '/goals': 'goals-main',
-  '/recipes': 'recipes',
-  '/app-users': 'app-users',
-  '/surveys': 'surveys',
-  '/community': 'community',
-  '/settings': 'settings-main'
+// Unified menu configuration
+const menuConfig = {
+  '/dashboard': { key: 'dashboard', title: 'Dashboard' },
+  '/patients': { key: 'patients', title: 'Patients' },
+  '/orders': { key: 'orders', title: 'Orders' },
+  '/results': { key: 'results', title: 'Results' },
+  '/inventory': { key: 'inventory', title: 'Inventory' },
+  '/location': { key: 'location', title: 'Location' },
+  '/events': { key: 'events', title: 'Events' },
+  '/logs/goals': { key: 'goals-log', title: 'Goals' },
+  '/logs/weight': { key: 'weight', title: 'Weight' },
+  '/logs/activity': { key: 'activity', title: 'Activity' },
+  '/logs/kicks': { key: 'kicks', title: 'Kicks' },
+  '/logs/contractions': { key: 'contractions', title: 'Contractions' },
+  '/media': { key: 'media', title: 'Media' },
+  '/media/images': { key: 'media-images', title: 'Images' },
+  '/media/videos': { key: 'media-videos', title: 'Videos' },
+  '/media/audio': { key: 'media-audio', title: 'Audio' },
+  '/media/documents': { key: 'media-documents', title: 'Documents' },
+  '/library': { key: 'library', title: 'Library' },
+  '/goals': { key: 'goals-main', title: 'Goals' },
+  '/recipes': { key: 'recipes', title: 'Recipes' },
+  '/app-users': { key: 'app-users', title: 'App Users' },
+  '/surveys': { key: 'surveys', title: 'Surveys' },
+  '/community': { key: 'community', title: 'Community' },
+  '/settings': { key: 'settings-main', title: 'Settings' }
 };
 
-// Map keys to titles
-const keyToTitleMap = {
-  'dashboard': 'Dashboard',
-  'patients': 'Patients',
-  'orders': 'Orders',
-  'results': 'Results',
-  'inventory': 'Inventory',
-  'location': 'Location',
-  'events': 'Events',
-  'goals-log': 'Goals',
-  'weight': 'Weight',
-  'activity': 'Activity',
-  'kicks': 'Kicks',
-  'contractions': 'Contractions',
-  'media': 'Media',
-  'media-all': 'Media',
-  'media-images': 'Images',
-  'media-videos': 'Videos',
-  'media-audio': 'Audio',
-  'media-documents': 'Documents',
-  'library': 'Library',
-  'goals-main': 'Goals',
-  'recipes': 'Recipes',
-  'app-users': 'App Users',
-  'surveys': 'Surveys',
-  'community': 'Community',
-  'settings-main': 'Settings'
-};
+// Create reverse mapping from keys to routes
+const keyToRouteMap = Object.entries(menuConfig).reduce((acc, [route, config]) => {
+  acc[config.key] = route;
+  return acc;
+}, {});
 
 const useMenu = () => {
   const navigate = useNavigate();
@@ -67,54 +44,23 @@ const useMenu = () => {
   // Initialize selected key based on current route
   useEffect(() => {
     const pathname = location.pathname;
-    const key = routeToKeyMap[pathname] || 'dashboard';
-    const title = keyToTitleMap[key] || 'Dashboard';
+    const config = menuConfig[pathname] || menuConfig['/dashboard'];
     
-    setSelectedKeys([key]);
-    setCurrentContentTitle(title);
+    setSelectedKeys([config.key]);
+    setCurrentContentTitle(config.title);
   }, [location.pathname]);
 
   const handleMenuSelect = useCallback(({ key }) => {
-        
     setSelectedKeys([key]);
     
-    // Get title from the map
-    const title = keyToTitleMap[key] || 'Dashboard';
-    
-    setCurrentContentTitle(title);
-    
-    // Map menu keys to routes
-    const routeMap = {
-      dashboard: '/dashboard',
-      patients: '/patients',
-      orders: '/orders',
-      results: '/results',
-      inventory: '/inventory',
-      location: '/location',
-      events: '/events',
-      'goals-log': '/logs/goals',
-      weight: '/logs/weight',
-      activity: '/logs/activity',
-      kicks: '/logs/kicks',
-      contractions: '/logs/contractions',
-      media: '/media',
-      'media-all': '/media',
-      'media-images': '/media/images',
-      'media-videos': '/media/videos',
-      'media-audio': '/media/audio',
-      'media-documents': '/media/documents',
-      library: '/library',
-      'goals-main': '/goals',
-      recipes: '/recipes',
-      'app-users': '/app-users',
-      surveys: '/surveys',
-      community: '/community',
-      'settings-main': '/settings'
-    };
-    
-    // Navigate to the corresponding route
-    const route = routeMap[key];
+    // Find the route for this key
+    const route = keyToRouteMap[key];
     if (route) {
+      // Get title from the config
+      const config = menuConfig[route];
+      setCurrentContentTitle(config.title);
+      
+      // Navigate to the corresponding route
       navigate(route);
     }
   }, [navigate]);
