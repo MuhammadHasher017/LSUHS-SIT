@@ -1,10 +1,9 @@
 import React from 'react';
 import { Badge, Avatar, Dropdown, Space } from 'antd';
 import { BellOutlined, UserOutlined, DownOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
-import '../../../src/App.css';
+import '../App.css';
 
-// Notification component
-const Notification = ({ collapsed }) => {
+const Notification = () => {
   const notificationItems = [
     {
       key: '1',
@@ -35,15 +34,13 @@ const Notification = ({ collapsed }) => {
   ];
 
   return (
-    
     <Dropdown
       menu={{ items: notificationItems }}
       trigger={["click"]}
-      overlayStyle={{ maxWidth: '260px', position: 'absolute', left: '20px', }}
-      overlayClassName={collapsed ? "dropdown-collapsed" : "dropdown-expanded"}
+      overlayStyle={{ maxWidth: '260px' }}
       arrow
-         >
-      <div className="footer-item notification-item"  >
+    >
+      <div className="footer-item notification-item" style={{ cursor: 'pointer', position: 'relative', marginRight: 24 }}>
         <div className="icon-container">
           <BellOutlined style={{ fontSize: '22px', color: '#555' }} />
           <Badge 
@@ -52,28 +49,18 @@ const Notification = ({ collapsed }) => {
             style={{ 
               backgroundColor: '#ff4d4f',
               position: 'absolute',
-              top: '-14px',
+              top: '-10px',
               right: '-7px',
               fontSize: '11px',
             }} 
           />
         </div>
-        {!collapsed && (
-          <>
-            <span className="item-text" >Notifications</span>
-          </>
-        )}
       </div>
     </Dropdown>
   );
 };
 
-// User dropdown trigger component
-const TriggerBottom = () => (
-  <DownOutlined className="dropdown-icon" style={{ marginLeft: 'auto' }} />
-);
-
-const SidebarFooter = ({ collapsed }) => {
+const Navbar = () => {
   const userDropdownItems = [
     {
       key: '1',
@@ -113,20 +100,29 @@ const SidebarFooter = ({ collapsed }) => {
     full_name: "Randall N.",
     image: "https://randomuser.me/api/portraits/men/32.jpg"
   };
-  
+
   return (
-    <div className="bottom-sidebar">
-      <Notification collapsed={collapsed} />
-      
+    <div style={{
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      padding: '0 32px',
+      height: 64,
+      background: '#fff',
+      borderBottom: '1px solid #f0f0f0',
+      position: 'sticky',
+      top: 0,
+      zIndex: 100
+    }}>
+      <Notification />
       <Dropdown 
         menu={{ items: userDropdownItems }} 
         trigger={["click"]} 
-        placement="topLeft"
-        overlayClassName={collapsed ? "dropdown-collapsed" : "dropdown-expanded"}
-        overlayStyle={ { position: 'absolute', left: '20px'}}
+        placement="bottomRight"
         arrow
       >
-        <div className="user-dropdown-sidebar" onClick={(e) => e.preventDefault()}>
+        <div className="user-dropdown-navbar" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           <div>
             {currentUser.image ? (
               <Avatar size={30} src={currentUser.image} style={{ border: '2px solid #f0f0f0' }} />
@@ -136,21 +132,14 @@ const SidebarFooter = ({ collapsed }) => {
               </Avatar>
             )}
           </div>
-
-          {!collapsed && (
-            <div className="user-info">
-              <div className="user-name-container">
-                <span className="username">{currentUser ? currentUser.full_name : ""}</span>
-              </div>
-              <div className="trigger-container">
-                <TriggerBottom />
-              </div>
-            </div>
-          )}
+          <div className="user-info" style={{ marginLeft: 10, display: 'flex', alignItems: 'center' }}>
+            <span className="username" style={{ fontWeight: 600, marginRight: 6 }}>{currentUser ? currentUser.full_name : ""}</span>
+            <DownOutlined className="dropdown-icon" />
+          </div>
         </div>
       </Dropdown>
     </div>
   );
 };
 
-export default SidebarFooter;
+export default Navbar; 

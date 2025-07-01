@@ -1,13 +1,8 @@
 /* Import Ant Design reset styles AFTER your @font-face definitions */
-@import 'antd/dist/reset.css';
-
-/* src/index.css or src/App.css */
-
-/* ... other @font-face rules for italic, other weights, etc. */
 
 
 
-/* Your other global styles */
+
 body {
   font-family: 'Proxima Nova', sans-serif;
   margin: 0;
@@ -236,4 +231,19 @@ body {
   display: none !important;
   opacity: 0;
   width: 0;
+}
+
+
+.navbar-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
+  height: 64px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }

@@ -13,9 +13,9 @@ import {
   ReloadOutlined
 } from '@ant-design/icons';
 import { useLocation } from 'react-router-dom';
-import DynamicModal from '../modals/DynamicModal';
-import ArticleFormContent from '../content/ArticleFormContent';
-import ExportFormContent from '../content/ExportFormContent';
+import DynamicModal from '../components/modals/DynamicModal';
+import ArticleFormContent from '../components/content/ArticleFormContent';
+import ExportFormContent from '../components/content/ExportFormContent';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;

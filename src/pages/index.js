@@ -1,0 +1,12 @@
+export { default as Dashboard } from './Dashboard/Dashboard.page.jsx';
+export { default as Events } from './Events/Events.page.jsx';
+export { default as Unauthorized } from './Unauthorized/Unauthorized.page.jsx';
+export { default as Settings } from './Settings/Settings.page.jsx';
+export { default as Community } from './Community/Community.page.jsx';
+export { default as Surveys } from './Surveys/Surveys.page.jsx';
+export { default as Goals } from './Goals/Goals.page.jsx';
+export { default as Location } from './Location/Location.page.jsx';
+export { default as Inventory } from './Inventory/Inventory.page.jsx';
+export { default as Results } from './Results/Results.page.jsx';
+export { default as Orders } from './Orders/Orders.page.jsx';
+export { default as Patients } from './Patients/Patients.page.jsx'; 
