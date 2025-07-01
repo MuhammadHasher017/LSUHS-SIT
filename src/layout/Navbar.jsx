@@ -43,7 +43,7 @@ const Notification = () => {
     >
       <div className="footer-item notification-item" style={{ cursor: 'pointer', position: 'relative', marginRight: 24 }}>
         <div className="icon-container">
-          <BellOutlined style={{ fontSize: '22px', color: '#555' }} />
+          <BellOutlined style={{ fontSize: '24px', color: '#555' }} />
           <Badge 
             count={1} 
             size="small" 
@@ -114,15 +114,15 @@ const Navbar = () => {
         <div className="user-dropdown-navbar" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           <div>
             {currentUser.image ? (
-              <Avatar size={30} src={currentUser.image} style={{ border: '2px solid #f0f0f0' }} />
+              <Avatar size={32} src={currentUser.image} />
             ) : (
-              <Avatar className="user-avatar" size={30}>
+              <Avatar className="user-avatar" size={32}>
                 {currentUser?.full_name?.charAt(0).toUpperCase()}
               </Avatar>
             )}
           </div>
-          <div className="user-info" style={{ marginLeft: 10, display: 'flex', alignItems: 'center' }}>
-            <span className="username" style={{ fontWeight: 600, marginRight: 6 }}>{currentUser ? currentUser.full_name : ""}</span>
+          <div className="user-info" style={{ marginLeft: 12, display: 'flex', alignItems: 'center' }}>
+            <span className="username" style={{ fontWeight: 600 }}>{currentUser ? currentUser.full_name : ""}</span>
             <DownOutlined className="dropdown-icon" />
           </div>
         </div>

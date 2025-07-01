@@ -59,11 +59,11 @@ body {
 }
 
 .footer-item {
-  padding: 10px 28px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-right: 1px solid #E0E0E0;
+  padding-right: 24px;
 }
 
 .footer-item:hover {
@@ -74,13 +74,18 @@ body {
   position: relative;
 }
 
-.icon-container {
+.footer-item .icon-container {
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.footer-item .icon-container .anticon{
+  font-size: 24px !important;
 }
 
 .item-text {
@@ -131,7 +136,7 @@ body {
 .dropdown-icon {
   font-size: 10px;
   color: #999;
-  margin-left: 4px;
+  margin-left: 12px;
   height: 12px;
   width: 12px;
   background-image: url(../src/assets/icons/dropdown-icon.svg);
@@ -254,6 +259,9 @@ body {
   top: 0;
   z-index: 100;
   line-height: 56px;
+}
+.user-dropdown-navbar{
+  padding: 0px 16px 0px 4px;
 }
 
 .main-section{
