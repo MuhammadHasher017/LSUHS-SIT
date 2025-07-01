@@ -50,9 +50,13 @@ const Notification = () => {
             style={{ 
               backgroundColor: '#ff4d4f',
               position: 'absolute',
-              top: '-10px',
-              right: '-7px',
-              fontSize: '11px',
+              top: '-20px',
+              right: '-12px',
+              fontSize: '12px',
+              height: '20px',
+              width: '24px',
+              borderRadius: '12px',
+              lineHeight: '20px'
             }} 
           />
         </div>
