@@ -8,7 +8,7 @@
     "colorTextBase": "#090909",
     "colorBgBase": "#fafafa",
     "fontSize": 16,
-    "fontFamily": "Neue Haas Grotesk Display"
+    "fontFamily": "Proxima Nova"
   },
   "components": {
     "Button": {
@@ -59,14 +59,14 @@
       "paddingBlock": 12,
       "paddingInline": 16,
       "borderRadius": 8,
-      "fontFamily": "Neue Haas Grotesk Display"
+      "fontFamily": "Proxima Nova"
     },
     "Table": {
       "headerBg": "rgb(255,255,255)",
       "cellPaddingBlock": 16,
       "fontSize": 16,
       "lineHeight": 1.2,
-      "fontFamily": "Neue Haas Grotesk Display",
+      "fontFamily": "Proxima Nova",
       "fontWeightStrong": 500,
       "borderColor": "rgb(224,224,224)",
       "colorText": "rgb(4,28,47)",
@@ -77,7 +77,7 @@
       "lineWidth": 0,
       "controlHeight": 40,
       "borderRadius": 20,
-      "fontFamily": "Neue Haas Grotesk Display",
+      "fontFamily": "Proxima Nova",
       "itemActiveBg": "rgb(232,243,253)",
       "colorPrimary": "rgb(9,9,9)",
       "fontWeightStrong": 700,
@@ -92,7 +92,7 @@
       "borderRadiusLG": 12,
       "boxShadowCard": "0px 1px 2px 0px rgba(0, 0, 0, 0.10);",
       "lineWidth": 0,
-      "fontFamily": "Neue Haas Grotesk Display",
+      "fontFamily": "Proxima Nova",
       "colorTextDescription": "rgb(9,9,9)",
       "colorTextHeading": "rgb(9,9,9)",
       "colorText": "rgb(9,9,9)",
@@ -117,7 +117,7 @@
       "borderRadius": 8,
       "paddingSM": 16,
       "optionPadding": "5px 12px",
-      "fontFamily": "Neue Haas Grotesk Display",
+      "fontFamily": "Proxima Nova",
       "colorFillSecondary": "rgba(0,0,0,0.06)"
     },
     "Tag": {
