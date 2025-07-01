@@ -65,10 +65,7 @@ const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
         padding: '30px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        position: 'sticky',
-        top: 0,
-        zIndex: 90
+        justifyContent: 'space-between'
       }}
     >
       <Space align="center">

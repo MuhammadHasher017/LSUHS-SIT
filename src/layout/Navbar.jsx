@@ -1,5 +1,6 @@
 import React from 'react';
-import { Badge, Avatar, Dropdown, Space } from 'antd';
+import { Badge, Avatar, Dropdown, Space, Layout } from 'antd';
+const { Header } = Layout;
 import { BellOutlined, UserOutlined, DownOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import '../App.css';
 
@@ -102,19 +103,7 @@ const Navbar = () => {
   };
 
   return (
-    <div style={{
-      width: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: '0 32px',
-      height: 64,
-      background: '#fff',
-      borderBottom: '1px solid #f0f0f0',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
+    <Header className='navbar-header'>
       <Notification />
       <Dropdown 
         menu={{ items: userDropdownItems }} 
@@ -138,7 +127,7 @@ const Navbar = () => {
           </div>
         </div>
       </Dropdown>
-    </div>
+    </Header>
   );
 };
 
