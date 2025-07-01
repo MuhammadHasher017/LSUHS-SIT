@@ -15,13 +15,11 @@ const Sidebar = ({ collapsed, selectedKeys, onMenuSelect, theme }) => {
   // Sidebar style
   const sidebarStyle = {
     overflow: 'auto',
-    backgroundColor: '#fff',
     height: '100vh',
     position: 'fixed',
     left: 0,
     top: 0,
     bottom: 0,
-    borderRight: '1px solid #f0f0f0',
     zIndex: 100,
     height: '100vh'
   };

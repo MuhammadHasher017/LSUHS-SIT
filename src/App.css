@@ -190,7 +190,7 @@ body {
 }
 
 .sidebar-menu-container {
-  padding: 16px 0px;
+  padding: 8px 0px;
 }
 
 .sidebar-menu-container .ant-menu {
@@ -201,7 +201,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0px;
   padding-left: 12px !important;
 }
 
