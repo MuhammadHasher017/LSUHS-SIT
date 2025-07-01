@@ -1,6 +1,4 @@
 import React, { Suspense } from 'react';
-import DynamicTable from '../components/tables/DynamicTable';
-
 const Dashboard = React.lazy(() => import('../pages/Dashboard/Dashboard.page.jsx'));
 const Events = React.lazy(() => import('../pages/Events/Events.page.jsx'));
 const Unauthorized = React.lazy(() => import('../pages/Unauthorized/Unauthorized.page.jsx'));
@@ -13,19 +11,14 @@ const Inventory = React.lazy(() => import('../pages/Inventory/Inventory.page.jsx
 const Results = React.lazy(() => import('../pages/Results/Results.page.jsx'));
 const Orders = React.lazy(() => import('../pages/Orders/Orders.page.jsx'));
 const Patients = React.lazy(() => import('../pages/Patients/Patients.page.jsx'));
-import useTableData from '../hooks/useTableData';
 import { DynamicTableWithData } from '../components/tables/DynamicTableWithData';
-// Remove imports for individual table components as we're using DynamicTable
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 const withSuspense = (Component) => (props) => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<LoadingSpinner/>}>
     <Component {...props} />
   </Suspense>
 );
-
-// Component to wrap DynamicTable with data from useTableData hook
-
-const Recipes = () => <div>Recipes Content</div>;
 
 const routes = [
   {

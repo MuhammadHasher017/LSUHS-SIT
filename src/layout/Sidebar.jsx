@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { Layout, Menu, Image, Typography } from 'antd';
 import createMenuItems from '../data/menuItems.jsx';
-import SidebarFooter from './SidebarFooter';
 import logo from '../assets/images/logo.svg';
 import logo2 from '../assets/images/logo_2.png';
 import '../App.css';
@@ -54,7 +53,6 @@ const Sidebar = ({ collapsed, selectedKeys, onMenuSelect, theme }) => {
           className="sidebar-menu"
         />
       </div>
-      <SidebarFooter collapsed={collapsed} />
     </Sider>
   );
 };
