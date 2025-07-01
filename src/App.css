@@ -1,5 +1,6 @@
 /* Import Ant Design reset styles AFTER your @font-face definitions */
 @import 'antd/dist/reset.css';
+
 /* src/index.css or src/App.css */
 
 /* ... other @font-face rules for italic, other weights, etc. */
@@ -8,7 +9,7 @@
 
 /* Your other global styles */
 body {
-  font-family: 'Neue Haas Grotesk Display', sans-serif;
+  font-family: 'Proxima Nova', sans-serif;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
