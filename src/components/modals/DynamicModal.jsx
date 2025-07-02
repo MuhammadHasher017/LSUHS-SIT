@@ -12,7 +12,7 @@ const DynamicModal = ({
 }) => {
   
   return (
-    <Modal
+    <Modal className='ui-modal'
       title={title}
       open={visible}
       onCancel={onCancel}

@@ -54,13 +54,14 @@
     },
     "Input": {
       "controlHeight": 48,
-      "colorBorder": "rgb(224,224,224)",
+      "colorBorder": "#BDBDBD",
       "colorText": "rgb(33,33,33)",
       "inputFontSize": 16,
       "paddingBlock": 12,
       "paddingInline": 16,
       "borderRadius": 8,
-      "fontFamily": "Proxima Nova"
+      "fontFamily": "Proxima Nova",
+      "colorBgContainer": "rgb(255,255,255)"
     },
     "Table": {
       "headerBg": "rgb(255,255,255)",
@@ -114,13 +115,14 @@
       "headerBg": "rgb(255,255,255)"
     },
     "Select": {
-      "colorBorder": "rgb(224,224,224)",
+      "colorBorder": "#BDBDBD",
       "controlHeight": 48,
       "borderRadius": 8,
       "paddingSM": 16,
       "optionPadding": "5px 12px",
       "fontFamily": "Proxima Nova",
-      "colorFillSecondary": "rgba(0,0,0,0.06)"
+      "colorFillSecondary": "rgba(0,0,0,0.06)",
+      "colorBgContainer":"rgb(255,255,255)"
     },
     "Tag": {
       "borderRadiusSM": 8

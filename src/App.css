@@ -27,6 +27,7 @@
   --login-forgot-text: #835800;
   --pagination-reord-color: #3C3D3E;
   --nav-icon-color: #3C3D3E;
+  --modal-title-text: #010032;
 
   /* Icon Colors */
   --active-icon: #331B00;
@@ -245,4 +246,30 @@ body {
   background: var(--white);
   height: calc(100vh - 56px);
   overflow-y: auto;
+}
+
+/* === ui-modal === */
+.ui-modal.ant-modal .ant-modal-close{
+top: 16px;
+right: 16px;
+height: 24px;
+width: 24px;
+}
+.ui-modal.ant-modal .ant-modal-content {
+  padding: 0px;
+}
+.ui-modal.ant-modal .ant-modal-content .ant-modal-header{
+  padding: 24px 40px 12px 40px;
+}
+.ui-modal.ant-modal .ant-modal-content .ant-modal-header .ant-modal-title{
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--modal-title-text);
+  line-height: 32px;
+}
+.ui-modal.ant-modal .ant-modal-content .ant-modal-body{
+  padding: 20px 40px 32px 40px;
+}
+.ui-modal.ant-modal .ant-modal-content .ant-modal-footer{
+  padding: 0px 40px 32px 40px;
 }
