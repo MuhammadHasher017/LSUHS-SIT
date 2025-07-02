@@ -1,7 +1,10 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 const RenderRoutes = ({ routes, user }) => {
+  const location = useLocation();
+  const isAuthRoute = location.pathname.startsWith('/auth');
+
   // Check if user has required roles to access a route
   const hasRequiredRoles = (routeRoles) => {
     // If no roles specified, allow access
@@ -48,7 +51,10 @@ const RenderRoutes = ({ routes, user }) => {
       // Determine what to render
       let element;
       
-      if (hasAccess) {
+      // If route is protected and user is not authenticated, redirect to login
+      if (!isAuthRoute && route.path !== '*' && !user?.email && route.path !== '/unauthorized') {
+        element = <Navigate to="/auth/login" replace />;
+      } else if (hasAccess) {
         // User has access, render the route element
         element = route.element;
       } else if (route.fallback) {

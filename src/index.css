@@ -21,3 +21,8 @@
 }
 
 /* Utility classes */
+.auth-container{
+  max-width: 500px;
+  margin: 300px auto
+  
+}

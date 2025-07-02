@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Layout } from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import MediaSidebar from './MediaSidebar';
 import Header from './Header';
@@ -98,7 +98,7 @@ const MainLayout = ({ children, theme }) => {
           onSearch={handleSearch}
         />
         <ContentWrapper theme={theme}>
-          {React.cloneElement(children, { searchText: searchText })}
+          <Outlet/>
         </ContentWrapper>
         </section>
       </Layout>
