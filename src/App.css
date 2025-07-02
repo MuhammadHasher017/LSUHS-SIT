@@ -1,8 +1,5 @@
 /* Import Ant Design reset styles AFTER your @font-face definitions */
 
-
-
-
 body {
   font-family: 'Proxima Nova', sans-serif;
   margin: 0;
@@ -10,45 +7,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Sidebar styles */
-.sidebar-container {
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100vh !important;
-  overflow: hidden !important;
+/**********Start Sidebar*************/
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  padding: 0px 30px;
+  height: 56px;
 }
-
+.sidebar-brand .ant-image {
+  padding: 14px 0px 15px 0px;
+  border-bottom: 1px solid #E5E8EB;
+  width: 100%;
+}
+.sidebar-brand .ant-image .ant-image-img {
+  height: 26px;
+  width: auto;
+}
 .sidebar-header {
   height: 56px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #f0f0f0;
 }
-
-.sidebar-menu-container {
-  flex: 1 !important;
-  overflow: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 0 !important;
-}
-
-.sidebar-menu {
-  flex: 1;
-  border-right: 0;
-  height: 100%;
-}
-
-.sidebar-footer-container {
-  margin-top: auto !important;
-  background: #fff !important;
-  position: relative !important;
-  z-index: 101 !important;
-  /* Higher than the sidebar z-index to ensure dropdowns are visible */
-  border-top: none !important;
-}
-
-/* Bottom sidebar styles */
 .bottom-sidebar {
   width: 100%;
   background: #fff;
@@ -58,43 +38,56 @@ body {
   z-index: 102;
 }
 
-.footer-item {
+.sidebar-menu-container {
+  padding: 8px 0px;
+}
+
+.sidebar-menu-container .ant-menu {
+  padding: 0px 12px;
+}
+
+.sidebar-menu-container>.ant-menu>.ant-menu-item {
+  padding-left: 12px !important;
+}
+
+.sidebar-menu-container .ant-menu-submenu-title{
+  padding-left: 12px !important;}
+
+
+/**********End Sidebar*************/
+
+/**********Start Table*************/
+.table-ui-container .ant-table-wrapper .ant-table {
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10);
+  padding: 12px 24px;
+}
+/**********End Table*************/
+
+/**********Start picker*************/
+.ant-picker {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10);
+}
+/**********End picker*************/
+
+
+/**********Start Navbar*************/
+.navbar-header{
+  width: 100%;
   display: flex;
   align-items: center;
-  cursor: pointer;
-  border-right: 1px solid #E0E0E0;
-  padding-right: 24px;
+  justify-content: flex-end;
+  padding: 0px 30px;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  line-height: 56px;
 }
-
-.footer-item:hover {
-  background-color: #f5f5f5;
+.user-dropdown-navbar{
+  padding: 0px 16px 0px 4px;
 }
-
-.notification-item {
-  position: relative;
-}
-
-.footer-item .icon-container {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  outline: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.footer-item .icon-container .anticon{
-  font-size: 24px !important;
-}
-
-.item-text {
-  margin-left: 12px;
-  font-size: 14px;
-  color: #333;
-  flex: 1;
-}
-
 .user-dropdown-sidebar {
   padding: 10px 24px;
   display: flex;
@@ -107,7 +100,7 @@ body {
   background-color: #f5f5f5;
 }
 
-.user-info {
+.user-dropdown-navbar .user-info {
   display: flex;
   width: 100%;
   align-items: center;
@@ -147,126 +140,37 @@ body {
   display: none;
 }
 
-/* Make sure Ant Design dropdowns are visible within the viewport */
-.ant-dropdown {
-  z-index: 1050;
-  /* Higher than sidebar z-index */
-}
-
-/* Ensure the dropdown doesn't go outside the viewport */
-.ant-dropdown-placement-topLeft {
-  position: fixed;
-}
-
-/* Adjust dropdown position for collapsed sidebar */
-.ant-layout-sider-collapsed+.ant-dropdown-placement-topLeft {
-  margin-left: 80px;
-  /* Adjust based on collapsed sidebar width */
-}
-
-/* Ensure the sidebar menu scrolls properly */
-.ant-layout-sider-children {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* Ensure the menu takes available space and scrolls */
-.ant-menu {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.sidebar-brand {
+.notification-item {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 0px 30px;
-  height: 56px;
+  cursor: pointer;
+  border-right: 1px solid #E0E0E0;
+  padding-right: 24px;
 }
 
-.sidebar-brand .ant-image {
-  padding: 14px 0px 15px 0px;
-  border-bottom: 1px solid #E5E8EB;
-  width: 100%;
-}
-
-.sidebar-brand .ant-image .ant-image-img {
-  height: 26px;
-  width: auto;
-}
-
-.sidebar-menu-container {
-  padding: 8px 0px;
-}
-
-.sidebar-menu-container .ant-menu {
-  padding: 0px 12px;
-}
-
-.sidebar-menu-container>.ant-menu>.ant-menu-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 12px !important;
-}
-
-.ant-menu-submenu-title{
-  padding-left: 12px !important;}
-
-.ant-menu-inline-collapsed>.ant-menu-item {
-  padding: 0px 12px;
-}
-
-.ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title {
-  padding: 0 12px;
+.notification-item .icon-container {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  outline: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-
-.table-ui-container .ant-table-wrapper .ant-table {
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10);
-  padding: 12px 24px;
+.notification-item .icon-container .anticon{
+  font-size: 24px !important;
 }
+/**********End Navbar*************/
 
-.ant-picker {
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10);
-}
-
-/* Hide menu labels when sidebar is collapsed */
-.sidebar-collapsed .ant-menu-item .ant-menu-title-content,
-.sidebar-collapsed .ant-menu-submenu .ant-menu-title-content {
-  display: none !important;
-  opacity: 0;
-  width: 0;
-}
-
-
-
-.navbar-header{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0px 30px;
-  height: 56px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  line-height: 56px;
-}
-.user-dropdown-navbar{
-  padding: 0px 16px 0px 4px;
-}
-
+/**********Start Main*************/
 .main-section{
   padding: 30px;
   background-color: #fff;
   height: calc(100vh - 56px);
   overflow-y: auto;
 }
+/**********End Main*************/
+
+/**********Start Ant Modal*************/

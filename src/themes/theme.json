@@ -1,6 +1,6 @@
 {
   "token": {
-    "colorPrimary": "#1272bf",
+    "colorPrimary": "#461D7C",
     "colorInfo": "#1272bf",
     "colorSuccess": "#00b84a",
     "colorError": "#e62204",
@@ -12,8 +12,8 @@
   },
   "components": {
     "Button": {
-      "colorPrimaryBg": "rgb(114,46,209)",
-      "borderRadius": 40,
+      "colorPrimaryBg": "#461D7C",
+      "borderRadius": 12,
       "contentFontSize": 16,
       "lineWidth": 1,
       "fontSize": 16,
@@ -28,8 +28,8 @@
       "paddingBlockSM": 10,
       "contentFontSizeLG": 18,
       "fontWeight": 700,
-      "borderRadiusLG": 40,
-      "borderRadiusSM": 30,
+      "borderRadiusLG": 18,
+      "borderRadiusSM": 8,
       "contentLineHeightLG": 1.4,
       "contentLineHeight": 1.2,
       "contentLineHeightSM": 1.2,
@@ -38,7 +38,8 @@
       "defaultGhostBorderColor": "rgb(18,114,191)",
       "defaultGhostColor": "rgb(18,114,191)",
       "defaultBorderColor": "rgb(197,199,211)",
-      "defaultColor": "rgb(66,66,66)"
+      "defaultColor": "rgb(66,66,66)",
+      "primaryShadow": "none"
     },
     "Dropdown": {
       "colorPrimary": "rgb(7,17,57)",
@@ -105,9 +106,8 @@
       "titleColor": "rgb(9,9,9)",
       "titleFontSize": 20,
       "fontWeightStrong": 500,
-      "padding": 25,
+      "padding": 0,
       "colorBgMask": "rgba(9,9,9,0.5)",
-      "controlHeight": 80,
       "contentBg": "rgb(255,255,255)",
       "headerBg": "rgb(255,255,255)"
     },
