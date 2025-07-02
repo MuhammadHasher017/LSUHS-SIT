@@ -62,7 +62,7 @@ const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
   return (
     <AntHeader
       style={{
-        padding: '30px',
+        padding: '0px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between'
@@ -76,7 +76,7 @@ const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
           style={{ fontSize: '18px', marginRight: '16px' }}
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         /> */}
-        <Title level={1} style={{ margin: 0 , fontSize: '32px', fontWeight:"700"}}>
+        <Title level={1} style={{ margin: 0 , fontSize: '40px', fontWeight:"700"}}>
           {title}
         </Title>
       </Space>

@@ -70,7 +70,7 @@
       "fontFamily": "Proxima Nova",
       "fontWeightStrong": 500,
       "borderColor": "rgb(224,224,224)",
-      "colorText": "rgb(4,28,47)",
+      "colorText": "#090909",
       "cellPaddingInline": 0,
       "headerSplitColor": "rgb(255,255,255)"
     },
@@ -86,8 +86,10 @@
       "lineHeight": 2
     },
     "Typography": {
-      "fontSizeHeading1": 32,
-      "lineHeightHeading1": 2
+      "fontSizeHeading1": 40,
+      "lineHeightHeading1": 1.2,
+      "fontWeightStrong": 700,
+      "colorText": "rgb(9,9,9)"
     },
     "Card": {
       "borderRadiusLG": 12,
@@ -126,7 +128,6 @@
     "Layout": {
       "bodyBg": "#fafafa",
       "headerBg": "rgba(255,255,255,0)",
-      "headerHeight": 108,
       "siderBg": "rgba(255,255,255,0)"
     },
     "Menu": {
@@ -145,7 +146,8 @@
       "itemPaddingInline": 12,
       "itemBorderRadius": 12,
       "iconSize": 24,
-      "iconMarginInlineEnd": 12
+      "iconMarginInlineEnd": 12,
+      "subMenuItemBg": "rgba(255,255,255,0)"
     },
     "DatePicker": {
       "borderRadius": 30,
