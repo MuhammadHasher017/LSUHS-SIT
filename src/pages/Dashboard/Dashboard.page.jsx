@@ -20,7 +20,9 @@ import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import './Dashboard.css';
 import useDashboard from './useDashboard.hook';
-
+import InfoCard from '@/components/common/InfoCard';
+import Icon from "../../assets/images/icon1.svg"
+import DashboardRandomTable from '@/components/tables/DashboardRandomTable';
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 
@@ -39,8 +41,67 @@ const Dashboard = () => {
     derivedMetrics
   } = useDashboard();
   
+  const infoCards = [
+    {
+      title: "Total Patients",
+      value: 1250,
+      change: 12,
+      changeValue: 42,
+      changeType: "up",
+      changeUnit: "users",
+      changeColor: "success",
+      suffix: "",
+      percent: null,
+      iconSrc: Icon,
+    },
+    {
+      title: "Total Result",
+      value: 200,
+      change: 1.2,
+      changeValue: 24,
+      changeType: "up",
+      changeUnit: "result",
+      changeColor: "success",
+      suffix: "",
+      percent: null,
+      iconSrc: Icon,
+    },
+    {
+      title: "Positive Results",
+      value: 40,
+      change: 1.2,
+      changeValue: 12,
+      changeType: "down",
+      changeUnit: "order",
+      changeColor: "danger",
+      suffix: "",
+      percent: null,
+      iconSrc: Icon,
+    },
+    {
+      title: "Positive Rate",
+      value: "20%",
+      change: 1.2,
+      changeValue: 1.2,
+      changeType: "up",
+      changeUnit: "",
+      changeColor: "success",
+      suffix: "%",
+      percent: 20,
+      iconSrc: Icon,
+    },
+  ];
+
   return (
     <div className="dashboard-container">
+      <div className="info-cards-flex">
+        {infoCards.map((card) => (
+          <div className="info-card-wrapper" key={card.title}>
+            <InfoCard {...card} />
+          </div>
+        ))}
+      </div>
+        <DashboardRandomTable />
       {/* Header with date picker */}
       <div className="dashboard-header">
         <div className="dashboard-controls">

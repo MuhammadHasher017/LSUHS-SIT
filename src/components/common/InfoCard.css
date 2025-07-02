@@ -1,0 +1,105 @@
+/* DynamicCard.css */
+.dynamic-card {
+    background: white;
+    border-radius: 8px;
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
+    border: 2px solid #e5e7eb;
+    padding: 24px;
+    width: 100%;
+    max-width: 433px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+  
+  .icon-container {
+    width: 32px;
+    height: 32px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+    color: #6b7280;
+  }
+  
+  .main-text {
+    margin-bottom: 12px;
+  }
+  
+  .main-number {
+    font-size: 30px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1;
+  }
+  
+  .trend-indicator {
+    display: flex;
+    align-items: center;
+  }
+  
+  .trend-icon-container {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+  
+  .trend-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .trend-icon-container.up .trend-icon {
+    color: #10b981; /* Green for up */
+  }
+  
+  .trend-icon-container.down .trend-icon {
+    color: #ef4444; /* Red for down */
+  }
+  
+  /* Default dot fallback if no icon is provided */
+  .default-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  
+  .default-dot.up {
+    background-color: #10b981; /* Green dot for up */
+  }
+  
+  .default-dot.down {
+    background-color: #ef4444; /* Red dot for down */
+  }
+  
+  .percentage {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .users-count {
+    font-size: 14px;
+    color: #6b7280;
+    margin-left: 4px;
+  }
