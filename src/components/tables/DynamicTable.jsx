@@ -16,7 +16,8 @@ const DynamicTable = ({
   pagination: paginationProps = {},
   searchText = '',
   onRowClick,
-  mediaType = 'all'
+  mediaType = 'all',
+  customColumns
 }) => {
   // State for UI
   const [loading] = useState(false);
@@ -182,19 +183,19 @@ const DynamicTable = ({
   
   // Get table columns with sorting capability
   const columns = useMemo(() => {
+    if (customColumns) return customColumns;
     const baseColumns = getTableColumns(dataType);
     return baseColumns.map(column => {
       // Skip the actions column
       if (column.key === 'actions') {
         return column;
       }
-      
       return {
         ...column,
         sorter: true
       };
     });
-  }, [dataType]);
+  }, [dataType, customColumns]);
   
   // Pagination configuration
   const pagination = {
