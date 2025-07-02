@@ -6,7 +6,7 @@ const LoginPage = () => {
   const { handleLogin, loading, error } = useLogin();
 
   return (
-    <div className="auth-container">
+    <div className="d-flex auth-container">
       <h2>Login</h2>
       <Form layout="vertical" onFinish={handleLogin}>
         <Form.Item name="email" label="Email" rules={[{ required: true, message: 'Please input your email!' }]}> 
