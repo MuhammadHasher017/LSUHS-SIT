@@ -39,6 +39,7 @@
       "defaultGhostColor": "rgb(18,114,191)",
       "defaultBorderColor": "rgb(197,199,211)",
       "defaultColor": "rgb(66,66,66)",
+      "defaultBg": "rgb(255,255,255)",
       "primaryShadow": "none"
     },
     "Dropdown": {
@@ -162,6 +163,11 @@
     "Drawer": {
       "boxShadowDrawerLeft": "0px 20px 56px -10px rgba(0, 0, 0, 0.15);",
       "colorBgMask": "rgba(0,0,0,0)"
+    },
+    "Form": {
+      "labelColor": "rgb(33,33,33)",
+      "verticalLabelPadding": "0 0 8px",
+      "itemMarginBottom": 24
     }
   }
 }

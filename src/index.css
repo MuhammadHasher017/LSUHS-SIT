@@ -19,10 +19,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
-
-/* Utility classes */
-.auth-container{
-  max-width: 500px;
-  margin: 300px auto
-  
-}
