@@ -90,6 +90,7 @@ const MainLayout = ({ children, theme }) => {
         }}
       >
         <Navbar />
+        <section className='main-section'>
         <Header
           collapsed={collapsed}
           toggleSidebar={toggleSidebar}
@@ -99,6 +100,7 @@ const MainLayout = ({ children, theme }) => {
         <ContentWrapper theme={theme}>
           {React.cloneElement(children, { searchText: searchText })}
         </ContentWrapper>
+        </section>
       </Layout>
     </Layout>
   );

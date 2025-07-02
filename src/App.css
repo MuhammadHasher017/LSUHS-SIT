@@ -19,7 +19,7 @@ body {
 }
 
 .sidebar-header {
-  height: 64px;
+  height: 56px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #f0f0f0;
@@ -59,11 +59,11 @@ body {
 }
 
 .footer-item {
-  padding: 10px 28px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-right: 1px solid #E0E0E0;
+  padding-right: 24px;
 }
 
 .footer-item:hover {
@@ -74,13 +74,18 @@ body {
   position: relative;
 }
 
-.icon-container {
+.footer-item .icon-container {
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
+  outline: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.footer-item .icon-container .anticon{
+  font-size: 24px !important;
 }
 
 .item-text {
@@ -131,7 +136,15 @@ body {
 .dropdown-icon {
   font-size: 10px;
   color: #999;
-  margin-left: 4px;
+  margin-left: 12px;
+  height: 12px;
+  width: 12px;
+  background-image: url(../src/assets/icons/dropdown-icon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.dropdown-icon>svg{
+  display: none;
 }
 
 /* Make sure Ant Design dropdowns are visible within the viewport */
@@ -169,23 +182,23 @@ body {
 .sidebar-brand {
   display: flex;
   align-items: center;
-  padding: 0px 24px;
-  height: 64px;
+  padding: 0px 30px;
+  height: 56px;
 }
 
 .sidebar-brand .ant-image {
-  padding: 16px 0px;
+  padding: 14px 0px 15px 0px;
   border-bottom: 1px solid #E5E8EB;
   width: 100%;
 }
 
 .sidebar-brand .ant-image .ant-image-img {
-  height: 32px;
+  height: 26px;
   width: auto;
 }
 
 .sidebar-menu-container {
-  padding: 16px 0px;
+  padding: 8px 0px;
 }
 
 .sidebar-menu-container .ant-menu {
@@ -196,7 +209,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0px;
   padding-left: 12px !important;
 }
 
@@ -235,16 +247,26 @@ body {
 }
 
 
-.navbar-container {
+
+.navbar-header{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 16px;
-  height: 64px;
-  background: #fff;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 0px 30px;
+  height: 56px;
   position: sticky;
   top: 0;
   z-index: 100;
+  line-height: 56px;
+}
+.user-dropdown-navbar{
+  padding: 0px 16px 0px 4px;
+}
+
+.main-section{
+  padding: 30px;
+  background-color: #fff;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
 }

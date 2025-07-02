@@ -124,22 +124,28 @@
       "borderRadiusSM": 8
     },
     "Layout": {
-      "bodyBg": "rgb(250,250,250)",
-      "headerBg": "rgb(250,250,250)",
+      "bodyBg": "#fafafa",
+      "headerBg": "rgba(255,255,255,0)",
       "headerHeight": 108,
-      "siderBg": "rgb(255,255,255)"
+      "siderBg": "rgba(255,255,255,0)"
     },
     "Menu": {
-      "itemBg": "rgb(255,255,255)",
+      "itemBg": "rgba(255,255,255,0)",
+      "itemActiveBg": "#F1EAFA",
       "lineType": "none",
-      "fontSize": 15,
+      "fontSize": 16,
+      "itemColor": "#616161",
+      "itemSelectedColor": "#041C2F",
+      "subMenuItemSelectedColor": "#090909",
       "itemSelectedBg": "#F1EAFA",
       "padding": 12,
       "itemHeight": 48,
-      "itemMarginBlock": 0,
+      "itemMarginBlock": 8,
       "itemMarginInline": 0,
       "itemPaddingInline": 12,
-      "itemSelectedColor": "#041C2F"
+      "itemBorderRadius": 12,
+      "iconSize": 24,
+      "iconMarginInlineEnd": 12
     },
     "DatePicker": {
       "borderRadius": 30,

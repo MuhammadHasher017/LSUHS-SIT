@@ -1,5 +1,6 @@
 import React from 'react';
-import { Badge, Avatar, Dropdown, Space } from 'antd';
+import { Badge, Avatar, Dropdown, Space, Layout } from 'antd';
+const { Header } = Layout;
 import { BellOutlined, UserOutlined, DownOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import '../App.css';
 
@@ -42,16 +43,20 @@ const Notification = () => {
     >
       <div className="footer-item notification-item" style={{ cursor: 'pointer', position: 'relative', marginRight: 24 }}>
         <div className="icon-container">
-          <BellOutlined style={{ fontSize: '22px', color: '#555' }} />
+          <BellOutlined style={{ fontSize: '24px', color: '#555' }} />
           <Badge 
             count={1} 
             size="small" 
             style={{ 
               backgroundColor: '#ff4d4f',
               position: 'absolute',
-              top: '-10px',
-              right: '-7px',
-              fontSize: '11px',
+              top: '-20px',
+              right: '-12px',
+              fontSize: '12px',
+              height: '20px',
+              width: '24px',
+              borderRadius: '12px',
+              lineHeight: '20px'
             }} 
           />
         </div>
@@ -102,19 +107,7 @@ const Navbar = () => {
   };
 
   return (
-    <div style={{
-      width: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: '0 32px',
-      height: 64,
-      background: '#fff',
-      borderBottom: '1px solid #f0f0f0',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
+    <Header className='navbar-header'>
       <Notification />
       <Dropdown 
         menu={{ items: userDropdownItems }} 
@@ -125,20 +118,20 @@ const Navbar = () => {
         <div className="user-dropdown-navbar" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           <div>
             {currentUser.image ? (
-              <Avatar size={30} src={currentUser.image} style={{ border: '2px solid #f0f0f0' }} />
+              <Avatar size={32} src={currentUser.image} />
             ) : (
-              <Avatar className="user-avatar" size={30}>
+              <Avatar className="user-avatar" size={32}>
                 {currentUser?.full_name?.charAt(0).toUpperCase()}
               </Avatar>
             )}
           </div>
-          <div className="user-info" style={{ marginLeft: 10, display: 'flex', alignItems: 'center' }}>
-            <span className="username" style={{ fontWeight: 600, marginRight: 6 }}>{currentUser ? currentUser.full_name : ""}</span>
+          <div className="user-info" style={{ marginLeft: 12, display: 'flex', alignItems: 'center' }}>
+            <span className="username" style={{ fontWeight: 600 }}>{currentUser ? currentUser.full_name : ""}</span>
             <DownOutlined className="dropdown-icon" />
           </div>
         </div>
       </Dropdown>
-    </div>
+    </Header>
   );
 };
 
