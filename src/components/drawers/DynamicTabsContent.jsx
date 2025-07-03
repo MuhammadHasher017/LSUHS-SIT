@@ -1,9 +1,11 @@
 import React from 'react';
 import { Tabs } from 'antd';
 
-const DynamicTabsContent = ({ tabs, record }) => (
+const DynamicTabsContent = ({ tabs, record, activeTabKey, onTabChange }) => (
   <Tabs
-    defaultActiveKey={tabs[0]?.key}
+  className="tabs-content"
+    activeKey={activeTabKey}
+    onChange={onTabChange}
     items={tabs.map(tab => ({
       key: tab.key,
       label: tab.label,

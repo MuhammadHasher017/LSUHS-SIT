@@ -1,0 +1,36 @@
+.drawer-header-root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.drawer-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.drawer-header-avatar {
+  margin-right: 16px;
+}
+
+.drawer-header-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.drawer-header-subtitle {
+  color: #888;
+  font-size: 12px;
+}
+
+.drawer-header-status {
+  margin-left: 16px;
+  font-weight: 500;
+}
+
+.drawer-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

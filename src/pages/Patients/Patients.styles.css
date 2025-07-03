@@ -1,0 +1,25 @@
+.info-cards-flex {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .info-card-wrapper {
+    flex: 1 1; /* Grow, shrink, min width */
+    min-width: 350px;
+    box-sizing: border-box;
+  }
+
+  
+  @media (max-width: 768px) {
+    .info-cards-flex {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .info-card-wrapper {
+      max-width: 100%;
+      min-width: 100%;
+      flex: 1 1 100%;
+    }
+  }

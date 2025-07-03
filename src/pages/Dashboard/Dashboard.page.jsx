@@ -20,7 +20,7 @@ import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import './Dashboard.css';
 import useDashboard from './useDashboard.hook';
-import InfoCard from '@/components/common/InfoCard';
+import InfoCard from '@/components/common/InfoCard/InfoCard';
 import DashboardRandomTable from '@/components/tables/DashboardRandomTable';
 import { SingleUserIcon } from '@/utils/icons';
 const { Title, Text } = Typography;

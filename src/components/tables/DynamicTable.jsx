@@ -1,12 +1,13 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
-import { Table, Space, Typography, Button, Tag, Dropdown, Card } from 'antd';
-import { MoreOutlined } from '@ant-design/icons';
-import DynamicModal from '../modals/DynamicModal';
-import ArticleDetailContent from '../content/ArticleDetailContent';
-import ArticleFormContent from '../content/ArticleFormContent';
-import DeleteConfirmContent from '../content/DeleteConfirmContent';
-import DynamicDrawer from '../drawers/DynamicDrawer';
+import { Table, Space, Typography, Button, Tag, Dropdown, Card, Menu } from 'antd';
 import { getTableColumns } from './tableUtils';
+import DynamicModal from '../modals/DynamicModal';
+import DynamicDrawer from '../drawers/DynamicDrawer';
+import DrawerHeader from '@/components/drawers/DrawerHeader';
+import ArticleFormContent from '../content/ArticleFormContent';
+import ArticleDetailContent from '../content/ArticleDetailContent';
+import DeleteConfirmContent from '../content/DeleteConfirmContent';
+import { LeftOutlined, RightOutlined, CloseOutlined, EllipsisOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 
@@ -18,8 +19,8 @@ const DynamicTable = ({
   onRowClick,
   mediaType = 'all',
   customColumns,
-  isTab,
-  tabsItem
+  isTab = false,
+  tabsItem = []
 }) => {
   // State for UI
   const [loading] = useState(false);
@@ -29,7 +30,11 @@ const DynamicTable = ({
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [actionType, setActionType] = useState('');
+  const [activeTabKey, setActiveTabKey] = useState(tabsItem?.[0]?.key || 'overview');
   
+
+  const items = [{ key: '1', label: 'Action 1' }, { key: '2', label: 'Action 2' }]
+
   // Ref for search input to avoid re-creating debounce function
   const searchInputRef = useRef(null);
   
@@ -219,6 +224,13 @@ const DynamicTable = ({
     ...paginationProps
   };
   
+  const currentTabIndex = tabsItem ? tabsItem.findIndex(tab => tab.key === activeTabKey) : -1;
+  
+  useEffect(() => {
+    if (drawerVisible && tabsItem && tabsItem.length > 0) {
+      setActiveTabKey(tabsItem[0].key);
+    }
+  }, [drawerVisible, tabsItem]);
   
   return (
     <div className="table-ui-container">
@@ -241,10 +253,39 @@ const DynamicTable = ({
       <DynamicDrawer
         visible={drawerVisible}
         onClose={handleCloseDrawer}
-        title={actionType === 'view' ? 'Detail' : 'Action'}
+        title={
+          <DrawerHeader
+            avatar={selectedRecord?.avatar}
+            title={selectedRecord?.name}
+            subtitle={selectedRecord?.id ? `ID${selectedRecord.id}` : ''}
+            status={selectedRecord?.status}
+            showAvatar={true}
+            showStatus={!!selectedRecord?.status}
+            actions={
+              <>
+                <Button
+                  icon={<LeftOutlined />} type="text"
+                  disabled={currentTabIndex <= 0}
+                  onClick={() => setActiveTabKey(tabsItem[currentTabIndex - 1].key)}
+                />
+                <Button
+                  icon={<RightOutlined />} type="text"
+                  disabled={currentTabIndex >= tabsItem?.length - 1}
+                  onClick={() => setActiveTabKey(tabsItem[currentTabIndex + 1].key)}
+                />
+                <Dropdown  menu={{items}} trigger={['click']}>
+                  <Button icon={<EllipsisOutlined />} type="text" />
+                </Dropdown>
+                <Button icon={<CloseOutlined />} type="text" onClick={handleCloseDrawer} />
+              </>
+            }
+          />
+        }
         extra={null}
         tabs={isTab ? tabsItem: undefined}
         record={selectedRecord}
+        activeTabKey={activeTabKey}
+        onTabChange={setActiveTabKey}
         children={
           actionType === 'view' && selectedRecord && (!customColumns || customColumns !== getTableColumns('patients')) ? (
             <ArticleDetailContent article={selectedRecord} />

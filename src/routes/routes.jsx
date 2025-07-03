@@ -6,7 +6,7 @@ import Login from '../pages/Login/Login.page.jsx';
 import SignUp from '../pages/SignUp/SignUp.page.jsx';
 import NotFound from '../pages/NotFound/NotFound.page.jsx';
 import { DynamicTableWithData } from '../components/tables/DynamicTableWithData';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
+import LoadingSpinner from '@/components/common/Loader/LoadingSpinner';
 import { Outlet } from 'react-router-dom';
 
 const Dashboard = React.lazy(() => import('../pages/Dashboard/Dashboard.page.jsx'));

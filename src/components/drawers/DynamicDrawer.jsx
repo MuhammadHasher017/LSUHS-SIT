@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 import { Drawer, Button } from 'antd';
-import DynamicTabsContent from '@/components/content/DynamicTabsContent';
+import DynamicTabsContent from '@/components/drawers/DynamicTabsContent';
 
 const DynamicDrawer = ({ 
   visible, 
@@ -11,7 +11,9 @@ const DynamicDrawer = ({
   placement = 'right',
   extra,
   tabs,
-  record
+  record,
+  activeTabKey,
+  onTabChange
 }) => {
   return (
     <Drawer
@@ -23,7 +25,12 @@ const DynamicDrawer = ({
       extra={extra}
     >
       {tabs && tabs.length > 0 ? (
-        <DynamicTabsContent tabs={tabs} record={record} />
+        <DynamicTabsContent
+          tabs={tabs}
+          record={record}
+          activeTabKey={activeTabKey}
+          onTabChange={onTabChange}
+        />
       ) : (
         children
       )}

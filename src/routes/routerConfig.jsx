@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import getRoutes from './routes.jsx';
-import LoadingSpinner from '../components/common/LoadingSpinner';
+import LoadingSpinner from '../components/common/Loader/LoadingSpinner.jsx';
 
 const RouterConfig = () => {
   const user = useSelector((state) => state.auth.user);

@@ -1,18 +1,20 @@
 import React from 'react';
+import tableData from '@/data/tableData';
 import usePatients from './usePatients.hook';
-import InfoCard from '@/components/common/InfoCard';
-import SelectableChips from '@/components/common/SelectableChips';
+import InfoCard from '@/components/common/InfoCard/InfoCard';
 import DynamicTable from '@/components/tables/DynamicTable';
 import { getTableColumns } from '@/components/tables/tableUtils';
-import tableData from '@/data/tableData';
+import SelectableChips from '@/components/common/SelectedChips/SelectableChips';
+import ActivityTabContent from '@/pages/Patients/Components/ActivityTabContent';
+import OrderTabContent from '@/pages/Patients/Components/OrderTabContent';
+import EventsTabContent from '@/pages/Patients/Components/EventsTabContent';
 import { MultiUserIcon, ResultsIcon, SingleUserIcon } from '@/utils/icons';
-import OverviewTabContent from '@/components/content/OverviewTabContent';
-import InsuranceTabContent from '@/components/content/InsuranceTabContent';
-import OrderTabContent from '@/components/content/OrderTabContent';
-import ResultsTabContent from '@/components/content/ResultsTabContent';
-import EventsTabContent from '@/components/content/EventsTabContent';
-import CommentTabContent from '@/components/content/CommentTabContent';
-import ActivityTabContent from '@/components/content/ActivityTabContent';
+import ResultsTabContent from '@/pages/Patients/Components/ResultsTabContent';
+import OverviewTabContent from '@/pages/Patients/Components/OverviewTabContent';
+import CommentTabContent from '@/pages/Patients/Components/CommentTabContent';
+import InsuranceTabContent from '@/pages/Patients/Components/InsuranceTabContent';
+
+import './Patients.styles.css'
 
 const Patients = () => {
   usePatients();
