@@ -10,8 +10,8 @@ const InfoCard = ({
   title = "Total Patients", 
   iconComponent: IconComponent,
   value = "1,250", 
-  percentage = "12%", 
-  userCount = "7",
+  percentage, 
+  userCount,
   trendDirection = "up", // "up" or "down"
 }) => {
   return (
@@ -30,6 +30,7 @@ const InfoCard = ({
       </div>
       
       <div className="trend-indicator">
+        {percentage && 
         <div className={`trend-icon-container ${trendDirection}`}>
           {trendDirection == 'up' ? (
             <ArrowUpIcon />
@@ -37,8 +38,8 @@ const InfoCard = ({
             <ArrowDownIcon  />
           )}
           <Text>{percentage}</Text>
-        </div>
-        <Text>({userCount} users)</Text>
+        </div>}
+        {userCount && <Text>({userCount} users)</Text>}
       </div>
     </div>
   );

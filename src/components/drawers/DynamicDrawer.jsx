@@ -23,6 +23,7 @@ const DynamicDrawer = ({
       open={visible}
       width={width}
       extra={extra}
+      className='custom-padding-tabs'
     >
       {tabs && tabs.length > 0 ? (
         <DynamicTabsContent

@@ -17,12 +17,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
-
-.tabs-content .ant-tabs-content-holder {
-  height: calc(100vh - 202px);         /* Set your desired height */
-  overflow: auto;
-}
-
-.tabs-content .ant-tabs-content {
-  padding: 0;
-}
