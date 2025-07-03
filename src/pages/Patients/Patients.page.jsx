@@ -6,6 +6,13 @@ import DynamicTable from '@/components/tables/DynamicTable';
 import { getTableColumns } from '@/components/tables/tableUtils';
 import tableData from '@/data/tableData';
 import { MultiUserIcon, ResultsIcon, SingleUserIcon } from '@/utils/icons';
+import OverviewTabContent from '@/components/content/OverviewTabContent';
+import InsuranceTabContent from '@/components/content/InsuranceTabContent';
+import OrderTabContent from '@/components/content/OrderTabContent';
+import ResultsTabContent from '@/components/content/ResultsTabContent';
+import EventsTabContent from '@/components/content/EventsTabContent';
+import CommentTabContent from '@/components/content/CommentTabContent';
+import ActivityTabContent from '@/components/content/ActivityTabContent';
 
 const Patients = () => {
   usePatients();
@@ -35,6 +42,16 @@ const Patients = () => {
       iconComponent: ResultsIcon,
     },
   ];
+
+  const patientTabs = [
+    { key: 'overview', label: 'Overview', content: OverviewTabContent },
+    { key: 'insurance', label: 'Insurance', content: InsuranceTabContent },
+    { key: 'order', label: 'Order', content: OrderTabContent },
+    { key: 'results', label: 'Results', content: ResultsTabContent },
+    { key: 'events', label: 'Events', content: EventsTabContent },
+    { key: 'comment', label: 'Comment', content: CommentTabContent },
+    { key: 'activity', label: 'Activity', content: ActivityTabContent },
+  ];
   return (
     <div>
       <SelectableChips/>
@@ -50,6 +67,8 @@ const Patients = () => {
           data={tableData}
           customColumns={getTableColumns('patients')}
           dataType={null}
+          isTab={true}
+          tabsItem={patientTabs}
         />
       </div>
     </div>

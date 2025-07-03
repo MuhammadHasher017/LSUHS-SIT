@@ -17,7 +17,9 @@ const DynamicTable = ({
   searchText = '',
   onRowClick,
   mediaType = 'all',
-  customColumns
+  customColumns,
+  isTab,
+  tabsItem
 }) => {
   // State for UI
   const [loading] = useState(false);
@@ -241,8 +243,10 @@ const DynamicTable = ({
         onClose={handleCloseDrawer}
         title={actionType === 'view' ? 'Detail' : 'Action'}
         extra={null}
+        tabs={isTab ? tabsItem: undefined}
+        record={selectedRecord}
         children={
-          actionType === 'view' && selectedRecord ? (
+          actionType === 'view' && selectedRecord && (!customColumns || customColumns !== getTableColumns('patients')) ? (
             <ArticleDetailContent article={selectedRecord} />
           ) : null
         }

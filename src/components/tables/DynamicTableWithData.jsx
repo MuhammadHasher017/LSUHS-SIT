@@ -2,7 +2,7 @@ import React from 'react';
 import useTableData from '../../hooks/useTableData';
 import DynamicTable from './DynamicTable';
 
-export const DynamicTableWithData = ({ dataType, mediaType = 'all', searchText = '' }) => {
+export const DynamicTableWithData = ({ dataType, mediaType = 'all', searchText = '' , isTab, tabsItem}) => {
   const { data, loading, handleSearch } = useTableData(dataType, mediaType);
 
   // Apply search when searchText changes
@@ -19,6 +19,8 @@ export const DynamicTableWithData = ({ dataType, mediaType = 'all', searchText =
       loading={loading}
       onSearch={handleSearch}
       mediaType={mediaType}
+      isTab={isTab}
+      tabsItem={tabsItem}
     />
   );
 }; 
