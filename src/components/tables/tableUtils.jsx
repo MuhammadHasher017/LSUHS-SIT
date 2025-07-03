@@ -150,6 +150,18 @@ export const getTableColumns = (dataType) => {
         { title: 'Date Added', dataIndex: 'dateAdded', key: 'dateAdded', width: 150 },
         ...commonColumns
       ];
+    case 'patients':
+      return [
+        { title: 'Name', dataIndex: 'name', key: 'name', width: 180 },
+        { title: 'Age', dataIndex: 'age', key: 'age', width: 80 },
+        { title: 'Gender', dataIndex: 'gender', key: 'gender', width: 100 },
+        { title: 'Contact', dataIndex: 'contact', key: 'contact', width: 140 },
+        { title: 'Insurance', dataIndex: 'insurance', key: 'insurance', width: 200 },
+        { title: 'Last Test', dataIndex: 'lastTest', key: 'lastTest', width: 120 },
+        { title: 'Status', dataIndex: 'status', key: 'status', width: 100 },
+        { title: 'ID', dataIndex: 'id', key: 'id', width: 120 },
+        ...commonColumns
+      ];
     default:
       return [
         { title: 'ID', dataIndex: 'id', key: 'id', width: 100 },
