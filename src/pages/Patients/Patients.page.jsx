@@ -1,11 +1,11 @@
 import React from 'react';
 import usePatients from './usePatients.hook';
-import Icon from "../../assets/images/icon1.svg"
 import InfoCard from '@/components/common/InfoCard';
 import SelectableChips from '@/components/common/SelectableChips';
 import DynamicTable from '@/components/tables/DynamicTable';
 import { getTableColumns } from '@/components/tables/tableUtils';
 import tableData from '@/data/tableData';
+import { MultiUserIcon, ResultsIcon, SingleUserIcon } from '@/utils/icons';
 
 const Patients = () => {
   usePatients();
@@ -14,38 +14,25 @@ const Patients = () => {
     {
       title: "Total Patients",
       value: 1250,
-      change: 12,
-      changeValue: 42,
-      changeType: "up",
-      changeUnit: "users",
-      changeColor: "success",
-      suffix: "",
+      trendDirection: "up",
       percent: null,
-      iconSrc: Icon,
+      userCount: '52',
+      iconComponent: MultiUserIcon,
+      
     },
     {
       title: "Total Result",
       value: 200,
-      change: 1.2,
-      changeValue: 24,
-      changeType: "up",
-      changeUnit: "result",
-      changeColor: "success",
-      suffix: "",
+      trendDirection: "up",
       percent: null,
-      iconSrc: Icon,
+      iconComponent: SingleUserIcon,
     },
     {
       title: "Positive Results",
       value: 40,
-      change: 1.2,
-      changeValue: 12,
-      changeType: "down",
-      changeUnit: "order",
-      changeColor: "danger",
-      suffix: "",
+      trendDirection: "down",
       percent: null,
-      iconSrc: Icon,
+      iconComponent: ResultsIcon,
     },
   ];
   return (

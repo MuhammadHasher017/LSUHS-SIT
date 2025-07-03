@@ -21,8 +21,8 @@ import Highcharts from 'highcharts';
 import './Dashboard.css';
 import useDashboard from './useDashboard.hook';
 import InfoCard from '@/components/common/InfoCard';
-import Icon from "../../assets/images/icon1.svg"
 import DashboardRandomTable from '@/components/tables/DashboardRandomTable';
+import { SingleUserIcon } from '@/utils/icons';
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 
@@ -52,7 +52,7 @@ const Dashboard = () => {
       changeColor: "success",
       suffix: "",
       percent: null,
-      iconSrc: Icon,
+      IconComponent: SingleUserIcon,
     },
     {
       title: "Total Result",
@@ -64,7 +64,7 @@ const Dashboard = () => {
       changeColor: "success",
       suffix: "",
       percent: null,
-      iconSrc: Icon,
+      IconComponent: SingleUserIcon,
     },
     {
       title: "Positive Results",
@@ -76,7 +76,7 @@ const Dashboard = () => {
       changeColor: "danger",
       suffix: "",
       percent: null,
-      iconSrc: Icon,
+      IconComponent: SingleUserIcon,
     },
     {
       title: "Positive Rate",
@@ -88,7 +88,7 @@ const Dashboard = () => {
       changeColor: "success",
       suffix: "%",
       percent: 20,
-      iconSrc: Icon,
+      IconComponent: SingleUserIcon,
     },
   ];
 

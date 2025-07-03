@@ -732,4 +732,93 @@ export const EventsIcon = ({ active, ...props }) => {
 
 
 
+export const SingleUserIcon = ({ ...props }) => {
+
+
+  return (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#616161"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+    />
+  </svg>
+  )
+};
+
+
+export const MultiUserIcon = ({ ...props }) => {
+
+
+  return (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={22}
+    height={20}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#616161"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.5}
+      d="M14 17.128a9.379 9.379 0 0 0 2.625.372 9.336 9.336 0 0 0 4.121-.952 4.126 4.126 0 0 0-7.533-2.493M14 17.128v-.003c0-1.113-.286-2.16-.787-3.07M14 17.128v.106A12.318 12.318 0 0 1 7.624 19c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M11 4.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
+    />
+  </svg>
+  )
+};
+
+
+export const ArrowUpIcon = ({ ...props }) => {
+
+
+  return (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={18}
+    height={18}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="#00B84A"
+      fillRule="evenodd"
+      d="M9 .875A8.125 8.125 0 0 1 17.125 9 8.125 8.125 0 0 1 9 17.125 8.125 8.125 0 0 1 .875 9 8.125 8.125 0 0 1 9 .875Zm-.442 4.558a.625.625 0 0 1 .884 0l2.5 2.5a.626.626 0 1 1-.884.884L9.625 7.383v4.742a.625.625 0 1 1-1.25 0V7.383L6.942 8.817a.625.625 0 1 1-.884-.884l2.5-2.5Z"
+      clipRule="evenodd"
+    />
+  </svg>
+  )
+};
+
+
+
+export const ArrowDownIcon = ({ ...props }) => {
+
+
+  return (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={18}
+    height={18}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="#E62204"
+      fillRule="evenodd"
+      d="M9 17.125A8.125 8.125 0 0 0 17.125 9 8.125 8.125 0 0 0 9 .875 8.125 8.125 0 0 0 .875 9 8.125 8.125 0 0 0 9 17.125Zm-.442-4.558a.625.625 0 0 0 .884 0l2.5-2.5a.627.627 0 0 0-.437-1.082.625.625 0 0 0-.447.198l-1.433 1.434V5.875a.625.625 0 0 0-1.25 0v4.742L6.942 9.183a.625.625 0 1 0-.884.884l2.5 2.5Z"
+      clipRule="evenodd"
+    />
+  </svg>
+  )
+};
 

@@ -1,43 +1,44 @@
 import React from 'react';
 import './InfoCard.css';
+import { ArrowDownIcon, ArrowUpIcon } from '@/utils/icons';
+import { Typography } from 'antd';
+
+const { Text} = Typography;
+
 
 const InfoCard = ({ 
   title = "Total Patients", 
-  iconSrc,
-  mainText = "1,250", 
+  iconComponent: IconComponent,
+  value = "1,250", 
   percentage = "12%", 
-  userCount = "42 users",
+  userCount = "7",
   trendDirection = "up", // "up" or "down"
-  trendIcon: TrendIcon // Pass your up/down arrow icon component
 }) => {
   return (
     <div className="dynamic-card">
-      {/* Header */}
       <div className="card-header">
         <span className="card-title">{title}</span>
-        {iconSrc && (
+        {IconComponent && (
           <div className="icon-container">
-            <img src={iconSrc} alt={title} className="icon" />
+            <IconComponent />
           </div>
         )}
       </div>
       
-      {/* Main Text */}
       <div className="main-text">
-        <span className="main-number">{mainText}</span>
+        <Text className="main-number">{value}</Text>
       </div>
       
-      {/* Growth/Trend Indicator */}
       <div className="trend-indicator">
         <div className={`trend-icon-container ${trendDirection}`}>
-          {TrendIcon ? (
-            <TrendIcon className="trend-icon" />
+          {trendDirection == 'up' ? (
+            <ArrowUpIcon />
           ) : (
-            <div className={`default-dot ${trendDirection}`}></div>
+            <ArrowDownIcon  />
           )}
+          <Text>{percentage}</Text>
         </div>
-        <span className="percentage">{percentage}</span>
-        <span className="users-count">({userCount})</span>
+        <Text>({userCount} users)</Text>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
   }
   
   .card-title {
@@ -24,8 +24,8 @@
   }
   
   .icon-container {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     background-color: #f3f4f6;
     border-radius: 8px;
     display: flex;
@@ -56,24 +56,20 @@
   }
   
   .trend-icon-container {
-    width: 16px;
-    height: 16px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 8px;
+    gap: 3px
   }
   
-  .trend-icon {
-    width: 12px;
-    height: 12px;
-  }
   
-  .trend-icon-container.up .trend-icon {
+  .trend-icon-container.up {
     color: #10b981; /* Green for up */
   }
   
-  .trend-icon-container.down .trend-icon {
+  .trend-icon-container.down{
     color: #ef4444; /* Red for down */
   }
   
@@ -90,16 +86,4 @@
   
   .default-dot.down {
     background-color: #ef4444; /* Red dot for down */
-  }
-  
-  .percentage {
-    font-size: 14px;
-    font-weight: 500;
-    color: #111827;
-  }
-  
-  .users-count {
-    font-size: 14px;
-    color: #6b7280;
-    margin-left: 4px;
   }
