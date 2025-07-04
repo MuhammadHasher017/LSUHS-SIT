@@ -1,27 +1,26 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login } from '../../store/slices/authSlice';
+import { useLoginMutation } from '@/store/api/authApi';
+import { useNavigate } from 'react-router-dom';
 
 const useLogin = () => {
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [login, { isLoading, error }] = useLoginMutation();
+  const navigate = useNavigate();
 
   const handleLogin = async (values) => {
-    setLoading(true);
-    setError(null);
-    const { email, password } = values;
     try {
-      // Replace with real API call
-      await dispatch(login({ email, password }));
-    } catch {
-      setError('Invalid credentials');
-    } finally {
-      setLoading(false);
+      const result = await login(values).unwrap();
+      console.log('Login successful:', result);
+      // Navigate to dashboard after successful login
+      navigate('/dashboard');
+    } catch (err) {
+      console.error('Login failed:', err);
     }
   };
 
-  return { handleLogin, loading, error };
+  return {
+    handleLogin,
+    loading: isLoading,
+    error: error?.data?.message || null, // API error message
+  };
 };
 
-export default useLogin; 
+export default useLogin;

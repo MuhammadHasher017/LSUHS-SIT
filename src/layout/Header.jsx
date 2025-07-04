@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Space, Button, Input, Typography, Upload, DatePicker, Select, Divider } from 'antd';
+import { Layout, Space, Button, Input, Typography, Upload, DatePicker, Select, Divider, Dropdown, Avatar } from 'antd';
 import { 
   SearchOutlined, 
   ExportOutlined, 
@@ -10,24 +10,43 @@ import {
   PlusOutlined,
   SortAscendingOutlined,
   CalendarOutlined,
-  ReloadOutlined
+  ReloadOutlined,
+  LogoutOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '@/store/slices/authSlice';
+import { useNavigate } from 'react-router-dom';
 import DynamicModal from '../components/modals/DynamicModal';
 import ArticleFormContent from '../components/content/ArticleFormContent';
 import ExportFormContent from '../components/content/ExportFormContent';
+import { getAddFormComponent, getAddModalConfig } from '@/utils/formFactory';
 
 const { Header: AntHeader } = Layout;
 const { Title } = Typography;
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
-const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
+const Header = ({ collapsed, toggleSidebar, title, onSearch, onDataRefresh }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const [modalVisible, setModalVisible] = useState(false);
   const [modalType, setModalType] = useState('add');
   
+  // Determine current page entity type based on pathname
+  const getCurrentEntityType = () => {
+    if (pathname.includes('/patients')) return 'patients';
+    if (pathname.includes('/orders')) return 'orders';
+    if (pathname.includes('/results')) return 'results';
+    if (pathname.includes('/inventory')) return 'inventory';
+    return null;
+  };
+  
+  const currentEntityType = getCurrentEntityType();
+  const modalConfig = getAddModalConfig(currentEntityType);
+  console.log("modalConfig", modalConfig)
+
   const handleOpenModal = (type) => {
     setModalType(type);
     setModalVisible(true);
@@ -36,6 +55,13 @@ const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
   const handleCloseModal = () => {
     setModalVisible(false);
   };
+  
+  const handleAddSuccess = () => {
+    setModalVisible(false);
+    // Trigger data refresh in the parent component
+    onDataRefresh?.();
+  };
+  
   return (
     <AntHeader
       style={{
@@ -50,6 +76,7 @@ const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
           {title}
         </Title>
       </Space>
+      
       <Space size="middle">
         {/* Dashboard page - Date range picker */}
         {pathname === '/dashboard' && (
@@ -63,22 +90,28 @@ const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
             />
         )}
         
-          <>
-            <Button
-              icon={<SearchOutlined />}
-              type="text"
-              style={{ border: 'none', background: 'transparent' }}
-              aria-label="Search"
-            />
-            <Button 
-              type="primary" 
-              icon={<ExportOutlined />}
-              aria-label="Export data"
-              onClick={() => handleOpenModal('export')}
-            >
-              Export
-            </Button>
-          </>
+        {/* Show Add button only for pages that have entities */}
+   
+        
+   
+        <Button 
+          color="primary" 
+          variant="outlined"
+          aria-label="Export data"
+          onClick={() => handleOpenModal('export')}
+        >
+          Export
+        </Button>
+        {currentEntityType && (
+          <Button 
+            type="primary" 
+            icon={<PlusOutlined />}
+            onClick={() => handleOpenModal('add')}
+            aria-label={modalConfig.buttonText}
+          >
+            {modalConfig.buttonText}
+          </Button>
+        )}
       </Space>
       
       {/* Dynamic modal for different actions */}
@@ -86,38 +119,21 @@ const Header = ({ collapsed, toggleSidebar, title, onSearch }) => {
         visible={modalVisible}
         onCancel={handleCloseModal}
         title={
-          modalType === 'add' ? 'Add new article' : 
-          modalType === 'export' ? 'Export articles' :
-          modalType === 'upload' ? 'Upload media' : 'Modal'
+          modalType === 'add' ? modalConfig.title : 
+          modalType === 'export' ? 'Export Data' :
+          'Modal'
         }
+        footerButtons={null}
+        width={modalType === 'add' ? 600 : 480}
         children={
-          modalType === 'add' ? <ArticleFormContent /> : 
-          modalType === 'export' ? <ExportFormContent /> :
-          modalType === 'upload' ? <ExportFormContent /> : null
+          modalType === 'add' ? 
+            getAddFormComponent(currentEntityType, { 
+              onSuccess: handleAddSuccess, 
+              onCancel: handleCloseModal 
+            }) : 
+          modalType === 'export' ? <ExportFormContent /> : null
         }
-        footerButtons={
-          modalType === 'add' 
-            ? [
-                <Button key="cancel" onClick={handleCloseModal}>
-                  Cancel
-                </Button>,
-                <Button key="draft" type="default">
-                  Save as Draft
-                </Button>,
-                <Button key="submit" type="primary">
-                  Continue
-                </Button>
-              ]
-            : [
-                <Button key="cancel" onClick={handleCloseModal}>
-                  Cancel
-                </Button>,
-                <Button key="submit" type="primary">
-                  {modalType === 'export' ? 'Export' : 
-                   modalType === 'upload' ? 'Upload' : 'Submit'}
-                </Button>
-              ]
-        }
+        footer={null} // Let the form handle its own footer
       />
     </AntHeader>
   );

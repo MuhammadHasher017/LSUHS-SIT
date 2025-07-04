@@ -1,6 +1,10 @@
+import { useGetPatientsQuery, useAddPatientMutation } from '@/store/api/patientsApi';
+
 const usePatients = () => {
-  // Add Patients-specific logic here
-  return {};
+  return {
+    useGetPatientsQuery,
+    useAddPatientMutation,
+  };
 };
 
-export default usePatients; 
+export default usePatients;

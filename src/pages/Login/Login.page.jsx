@@ -1,6 +1,7 @@
 import React from 'react';
 import useLogin from './useLogin.hook';
 import { Form, Input, Button, Alert, Divider } from 'antd';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const { handleLogin, loading, error } = useLogin();
@@ -39,7 +40,7 @@ const LoginPage = () => {
       {error && <Alert message={error} type="error" showIcon style={{ marginTop: 16 }} />}
       </div>
       <div className='login-footer'>
-          <p>Don't have an account? <a href="#">Sign Up</a></p>
+          <p>Don't have an account?  <Link to="/auth/signup">Sign Up</Link></p>
       </div>
     </div>
     </div>

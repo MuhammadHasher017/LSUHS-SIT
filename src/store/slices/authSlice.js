@@ -1,43 +1,11 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import { authApi } from '@/store/api/authApi';
+import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   user: null,
   isAuthenticated: false,
   loading: false,
   error: null,
 };
-
-// Mock async login
-export const login = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }, { rejectWithValue }) => {
-    // Dummy user credentials
-    if (email === 'randall@novatus.com' && password === '1234') {
-      return {
-        id: 1,
-        name: 'Randall N.',
-        email: 'randall@novatus.com',
-        roles: ['admin'],
-        permissions: ['read:all', 'write:all']
-      };
-    } else {
-      return rejectWithValue('Invalid credentials');
-    }
-  }
-);
-
-// Mock async signup
-export const signup = createAsyncThunk(
-  'auth/signup',
-  async ({ email, password }, { rejectWithValue }) => {
-    // Replace with real API call
-    if (email && password) {
-      return { email, roles: ['user'], permissions: [] };
-    } else {
-      return rejectWithValue('Signup failed');
-    }
-  }
-);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -51,6 +19,11 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
     },
+    logout: (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+      state.error = null;
+    },
     setAuthLoading: (state, action) => {
       state.loading = action.payload;
     },
@@ -62,43 +35,66 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Listen to RTK Query login/signup mutations
     builder
-      .addCase(login.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-        state.isAuthenticated = true;
-      })
-      .addCase(login.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-        state.user = null;
-        state.isAuthenticated = false;
-      })
-      .addCase(signup.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(signup.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-        state.isAuthenticated = true;
-      })
-      .addCase(signup.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-        state.user = null;
-        state.isAuthenticated = false;
-      });
+      // Login
+      .addMatcher(
+        authApi.endpoints.login.matchPending,
+        (state) => {
+          state.loading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        authApi.endpoints.login.matchFulfilled,
+        (state, action) => {
+          state.loading = false;
+          state.user = action.payload;
+          state.isAuthenticated = true;
+        }
+      )
+      .addMatcher(
+        authApi.endpoints.login.matchRejected,
+        (state, action) => {
+          state.loading = false;
+          state.error = action.error?.message || 'Login failed';
+          state.user = null;
+          state.isAuthenticated = false;
+        }
+      )
+
+      // Signup
+      .addMatcher(
+        authApi.endpoints.signup.matchPending,
+        (state) => {
+          state.loading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        authApi.endpoints.signup.matchFulfilled,
+        (state, action) => {
+          state.loading = false;
+          state.user = action.payload;
+          state.isAuthenticated = true;
+        }
+      )
+      .addMatcher(
+        authApi.endpoints.signup.matchRejected,
+        (state, action) => {
+          state.loading = false;
+          state.error = action.error?.message || 'Signup failed';
+          state.user = null;
+          state.isAuthenticated = false;
+        }
+      );
   },
 });
 
 export const {
   setUser,
   clearUser,
+  logout,
   setAuthLoading,
   setAuthError,
   clearAuthError,

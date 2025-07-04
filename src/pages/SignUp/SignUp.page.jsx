@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Alert, Divider, Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 
 const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
@@ -66,7 +67,7 @@ const SignUpPage = () => {
             {error && <Alert message={error} type="error" showIcon style={{ marginTop: 16 }} />}
           </div>
           <div className='login-footer'>
-            <p>Already have an account? <a href="#">Login</a></p>
+            <p>Already have an account? <Link to="/auth/login">Login</Link></p>
           </div>
         </div>
       </div>
